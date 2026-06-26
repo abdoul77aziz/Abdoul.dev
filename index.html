@@ -1,0 +1,1206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Abdoul Aziz Atonfo — Python Developer. Django backends, automation bots, data pipelines. Based in Cameroon, working worldwide.">
+<meta property="og:title" content="Abdoul Aziz — Python Developer">
+<meta property="og:description" content="Django backends, automation bots, data pipelines — delivered with documentation that actually makes sense.">
+<meta property="og:type" content="website">
+<title>Abdoul Aziz — Python Developer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🐍</text></svg>">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Abdoul Aziz Atonfo",
+  "jobTitle": "Python Developer",
+  "url": "https://abdoul.dev",
+  "sameAs": [
+    "https://www.freelancer.com/u/atonf0abdulAzz",
+    "https://github.com/VOTRE_GITHUB",
+    "https://www.linkedin.com/in/VOTRE_LINKEDIN"
+  ],
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Douala",
+    "addressCountry": "CM"
+  },
+  "knowsAbout": ["Python", "Django", "REST API", "PostgreSQL", "Automation", "Data Analysis"]
+}
+</script>
+
+<style>
+/* ============================================
+   THEME VARIABLES — Light/Dark Hybrid
+   ============================================ */
+:root {
+  /* Palette vive */
+  --emerald: #059669;
+  --emerald-deep: #047857;
+  --emerald-glow: #10b981;
+  --orange: #f97316;
+  --orange-hot: #ea580c;
+  --blue: #2563eb;
+  --blue-electric: #3b82f6;
+
+  /* Light theme (défaut) */
+  --bg: #fafaf9;
+  --bg-elevated: rgba(255, 255, 255, 0.7);
+  --bg-terminal: #0a0a0a;
+  --bg-terminal-header: #1a1a1a;
+  --text: #0a0a0a;
+  --text-muted: #525252;
+  --text-dim: #737373;
+  --border: rgba(10, 10, 10, 0.08);
+  --border-strong: rgba(10, 10, 10, 0.15);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
+  --shadow-glow: 0 8px 24px rgba(5, 150, 105, 0.15);
+  --gradient-accent: linear-gradient(135deg, var(--emerald) 0%, var(--blue) 100%);
+  --gradient-orange: linear-gradient(135deg, var(--orange) 0%, var(--orange-hot) 100%);
+  --gradient-terminal: linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0a0a0a;
+    --bg-elevated: rgba(20, 20, 20, 0.7);
+    --bg-terminal: #050505;
+    --bg-terminal-header: #0f0f0f;
+    --text: #fafafa;
+    --text-muted: #a3a3a3;
+    --text-dim: #737373;
+    --border: rgba(250, 250, 250, 0.08);
+    --border-strong: rgba(250, 250, 250, 0.15);
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --shadow-glow: 0 8px 24px rgba(16, 185, 129, 0.25);
+  }
+}
+
+/* ============================================
+   BASE & RESET
+   ============================================ */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Space Grotesk', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease;
+  overflow-x: hidden;
+}
+
+/* Background subtil avec gradient */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: 
+    radial-gradient(circle at 20% 0%, rgba(5, 150, 105, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 80% 100%, rgba(37, 99, 235, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(249, 115, 22, 0.03) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================
+   SKIP LINK (a11y)
+   ============================================ */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--emerald);
+  color: #fff;
+  padding: 8px 16px;
+  z-index: 1000;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 0 0 8px 0;
+  transition: top 0.2s;
+}
+.skip-link:focus { top: 0; }
+
+/* ============================================
+   NAVIGATION — Glassmorphism
+   ============================================ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 1rem 0;
+  background: var(--bg-elevated);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  transition: color 0.2s;
+}
+.logo span {
+  color: var(--emerald);
+  font-style: italic;
+}
+.logo:hover { color: var(--emerald); }
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lang-btn {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 8px;
+  cursor: pointer;
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  backdrop-filter: blur(10px);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.02em;
+}
+.lang-btn:hover {
+  border-color: var(--emerald);
+  color: var(--emerald);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.15);
+}
+
+.nav-cta {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 8px;
+  background: var(--text);
+  color: var(--bg);
+  border: 1.5px solid var(--text);
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.02em;
+}
+.nav-cta:hover {
+  background: var(--emerald);
+  border-color: var(--emerald);
+  color: #fff;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-glow);
+}
+
+/* ============================================
+   HERO
+   ============================================ */
+.hero {
+  padding: 6rem 0 5rem;
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.avail {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--emerald);
+  background: rgba(5, 150, 105, 0.08);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  padding: 6px 14px;
+  border-radius: 24px;
+  margin-bottom: 1.8rem;
+  backdrop-filter: blur(10px);
+}
+.avail-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--emerald-glow);
+  box-shadow: 0 0 8px var(--emerald-glow);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.9); }
+}
+
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 3.5rem;
+  line-height: 1.05;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+}
+.hero h1 em {
+  font-style: italic;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.hero-sub {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  max-width: 520px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  padding: 13px 28px;
+  background: var(--text);
+  color: var(--bg);
+  border: 1.5px solid var(--text);
+  border-radius: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.01em;
+}
+.btn-primary:hover {
+  background: var(--emerald);
+  border-color: var(--emerald);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+
+.btn-secondary {
+  padding: 13px 28px;
+  background: transparent;
+  color: var(--text);
+  border: 1.5px solid var(--border-strong);
+  border-radius: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.01em;
+}
+.btn-secondary:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.15);
+}
+
+/* ============================================
+   TERMINAL — Premium
+   ============================================ */
+.terminal {
+  background: var(--gradient-terminal);
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 
+    0 20px 50px rgba(0, 0, 0, 0.4),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+    0 0 40px rgba(5, 150, 105, 0.08);
+  position: relative;
+}
+
+.terminal::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.5), transparent);
+}
+
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 20px;
+  background: var(--bg-terminal-header);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.terminal-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+.terminal-dot.r { background: #ff5f57; box-shadow: 0 0 8px rgba(255, 95, 87, 0.5); }
+.terminal-dot.y { background: #ffbd2e; box-shadow: 0 0 8px rgba(255, 189, 46, 0.5); }
+.terminal-dot.g { background: #28c840; box-shadow: 0 0 8px rgba(40, 200, 64, 0.5); }
+
+.terminal-file {
+  font-size: 12px;
+  color: #737373;
+  font-family: 'JetBrains Mono', monospace;
+  margin-left: 8px;
+  font-weight: 500;
+}
+
+.terminal-body {
+  padding: 1.8rem 2rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  line-height: 1.9;
+  min-height: 280px;
+  color: #e5e7eb;
+}
+
+/* Syntax highlighting */
+.syn-comment { color: #6b7280; font-style: italic; }
+.syn-keyword { color: #c084fc; font-weight: 500; }
+.syn-function { color: #34d399; }
+.syn-string { color: #fbbf24; }
+.syn-variable { color: #e5e7eb; }
+.syn-decorator { color: #60a5fa; }
+.syn-number { color: #fb923c; }
+
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 15px;
+  background: var(--emerald-glow);
+  vertical-align: middle;
+  animation: blink 1s infinite;
+  box-shadow: 0 0 8px var(--emerald-glow);
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ============================================
+   STATS
+   ============================================ */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+.stat {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: var(--bg-elevated);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.stat:hover {
+  border-color: var(--emerald);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-glow);
+}
+.stat:hover::before { transform: scaleX(1); }
+
+.stat-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 3rem;
+  font-weight: 400;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.stat-num span {
+  color: var(--emerald);
+  font-style: italic;
+}
+.stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+.section {
+  padding: 5rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.sec-eyebrow {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.sec-eyebrow::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--orange);
+}
+
+.sec-title {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 2.5rem;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.sec-sub {
+  color: var(--text-muted);
+  font-size: 1rem;
+  margin-bottom: 3rem;
+  max-width: 600px;
+}
+
+/* ============================================
+   SKILLS — Badges premium
+   ============================================ */
+.badges-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 1.2rem 1.4rem;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--bg-elevated);
+  backdrop-filter: blur(20px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.badge::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--gradient-accent);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.3s ease;
+}
+
+.badge:hover {
+  border-color: var(--emerald);
+  transform: translateY(-3px) translateX(2px);
+  box-shadow: var(--shadow-glow);
+}
+.badge:hover::after { transform: scaleY(1); }
+
+.badge-icon {
+  font-size: 24px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+.badge-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+.badge-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* ============================================
+   PROJECTS
+   ============================================ */
+.proj-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.proj-card {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2rem;
+  background: var(--bg-elevated);
+  backdrop-filter: blur(20px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.proj-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gradient-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.proj-card:hover {
+  border-color: var(--emerald);
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+.proj-card:hover::before { transform: scaleX(1); }
+
+.proj-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--orange);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+}
+
+.proj-title {
+  font-family: 'Instrument Serif', serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--text);
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.01em;
+}
+
+.proj-desc {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border: 1px solid var(--border-strong);
+  border-radius: 20px;
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.2s;
+}
+.proj-card:hover .pill {
+  border-color: rgba(5, 150, 105, 0.3);
+  color: var(--emerald);
+}
+
+/* ============================================
+   CONTACT
+   ============================================ */
+.contact-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.contact-info p {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 2rem;
+}
+
+.contact-detail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--text);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+
+.contact-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(5, 150, 105, 0.1);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+.contact-detail:hover .contact-icon {
+  background: var(--emerald);
+  transform: scale(1.05);
+}
+
+.social-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  background: var(--bg-elevated);
+  backdrop-filter: blur(10px);
+}
+.social-link:hover {
+  border-color: var(--blue);
+  color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+}
+
+.form-card {
+  background: var(--bg-elevated);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: var(--shadow-md);
+}
+
+.fg {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1.2rem;
+}
+
+.fg label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.fg input,
+.fg textarea,
+.fg select {
+  padding: 11px 14px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+
+.fg input:focus,
+.fg textarea:focus,
+.fg select:focus {
+  border-color: var(--emerald);
+  box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.15);
+}
+
+.fg textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.form-row2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.send-btn {
+  width: 100%;
+  padding: 14px;
+  background: var(--text);
+  color: var(--bg);
+  border: 1.5px solid var(--text);
+  border-radius: 10px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  margin-top: 0.5rem;
+  letter-spacing: 0.01em;
+}
+.send-btn:hover:not(:disabled) {
+  background: var(--emerald);
+  border-color: var(--emerald);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-glow);
+}
+.send-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ok-msg,
+.err-msg {
+  display: none;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  margin-top: 1rem;
+}
+.ok-msg {
+  color: var(--emerald);
+  background: rgba(5, 150, 105, 0.1);
+  border: 1px solid rgba(5, 150, 105, 0.2);
+}
+.err-msg {
+  color: var(--orange-hot);
+  background: rgba(249, 115, 22, 0.1);
+  border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+footer {
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.foot-copy {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.foot-links {
+  display: flex;
+  gap: 20px;
+}
+
+.foot-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.foot-link:hover { color: var(--emerald); }
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 3.5rem 0 2.5rem;
+    gap: 3rem;
+  }
+  .hero h1 { font-size: 2.5rem; }
+  .sec-title { font-size: 2rem; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stat:last-child { grid-column: span 2; }
+  .contact-wrap { grid-template-columns: 1fr; gap: 2rem; }
+  .form-row2 { grid-template-columns: 1fr; }
+  .form-card { padding: 1.8rem; }
+  .terminal-body { padding: 1.2rem; font-size: 11.5px; }
+  footer { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .wrap { padding: 0 1.2rem; }
+  .hero h1 { font-size: 2rem; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+  .stats-row { grid-template-columns: 1fr; }
+  .stat:last-child { grid-column: span 1; }
+  .badges-wrap { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="logo">Abdoul<span>.</span>dev</div>
+    <div class="nav-right">
+      <button class="lang-btn" id="langBtn" onclick="toggleLang()" aria-label="Switch language">FR</button>
+      <a href="#contact" class="nav-cta" id="navCta">Hire me</a>
+    </div>
+  </div>
+</nav>
+
+<main id="main" class="wrap">
+
+  <section class="hero">
+    <div>
+      <div class="avail"><div class="avail-dot"></div><span id="availTxt">Available for projects</span></div>
+      <h1 id="heroH1">Python dev who ships <em>clean code</em>, not excuses</h1>
+      <p class="hero-sub" id="heroSub">Django backends, automation bots, data pipelines — delivered with documentation that actually makes sense. Based in Cameroon, working worldwide.</p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary" id="btnHire">Hire me</a>
+        <a href="#projects" class="btn-secondary" id="btnWork">See my work</a>
+      </div>
+    </div>
+    <div class="terminal" aria-hidden="true">
+      <div class="terminal-header">
+        <div class="terminal-dot r"></div>
+        <div class="terminal-dot y"></div>
+        <div class="terminal-dot g"></div>
+        <span class="terminal-file">pos_bakery/sales/views.py</span>
+      </div>
+      <div class="terminal-body" id="codeBody"></div>
+    </div>
+  </section>
+
+  <div class="stats-row">
+    <div class="stat"><div class="stat-num">3<span>+</span></div><div class="stat-label" id="s1">Projects delivered</div></div>
+    <div class="stat"><div class="stat-num"><span>#</span>1</div><div class="stat-label" id="s2">Stack: Python</div></div>
+    <div class="stat"><div class="stat-num">24<span>h</span></div><div class="stat-label" id="s3">Response time</div></div>
+  </div>
+
+  <section class="section">
+    <div class="sec-eyebrow" id="skillEye">Tech stack</div>
+    <div class="sec-title" id="skillTitle">Tools I work with</div>
+    <p class="sec-sub" id="skillSub">Battle-tested in real projects — not just tutorials.</p>
+    <div class="badges-wrap">
+      <div class="badge"><div class="badge-icon">🐍</div><div><div class="badge-name">Python</div><div class="badge-desc">Primary language</div></div></div>
+      <div class="badge"><div class="badge-icon">🎸</div><div><div class="badge-name">Django</div><div class="badge-desc">Web & REST API</div></div></div>
+      <div class="badge"><div class="badge-icon">🗄️</div><div><div class="badge-name">PostgreSQL / SQLite</div><div class="badge-desc">Databases</div></div></div>
+      <div class="badge"><div class="badge-icon"></div><div><div class="badge-name">Playwright</div><div class="badge-desc">Automation & testing</div></div></div>
+      <div class="badge"><div class="badge-icon">📊</div><div><div class="badge-name">Pandas & Streamlit</div><div class="badge-desc">Data & dashboards</div></div></div>
+      <div class="badge"><div class="badge-icon">📄</div><div><div class="badge-name">ReportLab & openpyxl</div><div class="badge-desc">PDF & Excel export</div></div></div>
+      <div class="badge"><div class="badge-icon">🔗</div><div><div class="badge-name">REST API</div><div class="badge-desc">Integration & design</div></div></div>
+      <div class="badge"><div class="badge-icon">🐙</div><div><div class="badge-name">Git & GitHub</div><div class="badge-desc">Version control</div></div></div>
+    </div>
+  </section>
+
+  <section class="section" id="projects">
+    <div class="sec-eyebrow" id="projEye">Projects</div>
+    <div class="sec-title" id="projTitle">Selected work</div>
+    <p class="sec-sub" id="projSub">Real code. Real docs. No lorem ipsum.</p>
+    <div class="proj-grid">
+      <div class="proj-card">
+        <div class="proj-num">01 / Django · Bootstrap</div>
+        <div class="proj-title" id="pt1">POS Bakery</div>
+        <div class="proj-desc" id="pd1">Full-featured point of sale system with role-based auth (Admin/Cashier), real-time inventory tracking, multi-payment support (cash, card, mobile), and daily close reporting. Price frozen at sale time — historical records stay accurate even if catalogue prices change.</div>
+        <div class="stack"><span class="pill">Django 5</span><span class="pill">SQLite</span><span class="pill">Bootstrap 5</span><span class="pill">select_for_update</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">02 / Django · ReportLab</div>
+        <div class="proj-title" id="pt2">School Grading System</div>
+        <div class="proj-desc" id="pd2">Complete grade management platform for schools — 4 grading scales (FR/US/UK/Africa), automatic mention calculation, PDF & Excel bulletin export, student ranking by average, and role-based access control.</div>
+        <div class="stack"><span class="pill">Django 5</span><span class="pill">ReportLab</span><span class="pill">openpyxl</span><span class="pill">Bootstrap 5</span></div>
+      </div>
+      <div class="proj-card">
+        <div class="proj-num">03 / Streamlit · Pandas</div>
+        <div class="proj-title" id="pt3">Weekly Meal Planner</div>
+        <div class="proj-desc" id="pd3">Automated 7-day meal planner with dietary filtering (Keto, Vegan, Gluten-Free), meal locking that survives regeneration, consolidated shopping list, and one-click Excel/CSV export.</div>
+        <div class="stack"><span class="pill">Streamlit</span><span class="pill">Pandas</span><span class="pill">openpyxl</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="contact">
+    <div class="sec-eyebrow" id="contEye">Contact</div>
+    <div class="sec-title" id="contTitle">Let's build something</div>
+    <div class="contact-wrap">
+      <div class="contact-info">
+        <p id="contDesc">Got a Python project, a bug to fix, or an idea to automate? Tell me what you need — I'll respond within 24 hours.</p>
+        <div class="contact-detail"><div class="contact-icon">📍</div><span>Douala, Cameroon</span></div>
+        <div class="contact-detail"><div class="contact-icon">⚡</div><span id="respTxt">24h response time</span></div>
+        <div class="contact-detail"><div class="contact-icon">🌍</div><span id="workTxt">Working worldwide</span></div>
+        
+        <div class="social-links">
+          <a href="https://github.com/VOTRE_GITHUB" target="_blank" rel="noopener" class="social-link" id="ghLink">🐙 GitHub</a>
+          <a href="https://linkedin.com/in/VOTRE_LINKEDIN" target="_blank" rel="noopener" class="social-link" id="liLink">💼 LinkedIn</a>
+          <a href="https://www.freelancer.com/u/atonf0abdulAzz" target="_blank" rel="noopener" class="social-link" id="flLink">⭐ Freelancer</a>
+        </div>
+      </div>
+      
+      <div class="form-card">
+        <form id="contactForm" action="https://formspree.io/f/REMPLACEZ_PAR_VOTRE_ID_FORMSPREE" method="POST">
+          <div class="form-row2">
+            <div class="fg">
+              <label for="iName" id="lName">Name</label>
+              <input type="text" id="iName" name="name" placeholder="Alice Martin" required>
+            </div>
+            <div class="fg">
+              <label for="iEmail" id="lEmail">Email</label>
+              <input type="email" id="iEmail" name="email" placeholder="alice@company.com" required>
+            </div>
+          </div>
+          <div class="fg">
+            <label for="iService" id="lService">Service</label>
+            <select id="iService" name="service" required>
+              <option value="django" id="o1">Django web application</option>
+              <option value="automation" id="o2">Automation bot / script</option>
+              <option value="data" id="o3">Data analysis & reporting</option>
+              <option value="bugfix" id="o4">Bug fix / code review</option>
+              <option value="other" id="o5">Other</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label for="iMsg" id="lMsg">Message</label>
+            <textarea id="iMsg" name="message" placeholder="Describe your project..." required></textarea>
+          </div>
+          <button type="submit" class="send-btn" id="sendBtn">Send message →</button>
+          <div class="ok-msg" id="okMsg">✓ Got it — I'll reply within 24 hours.</div>
+          <div class="err-msg" id="errMsg">⚠️ Something went wrong. Please email me directly.</div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="foot-copy" id="footCopy">© 2026 Abdoul Aziz Atonfo · Douala, Cameroon</span>
+  <div class="foot-links">
+    <a href="https://github.com/abdoul77aziz/POS-Bakery-Github.git" target="_blank" rel="noopener" class="foot-link">GitHub</a>
+    <a href="https://www.linkedin.com/in/atonfo-abdoul-aziz-86478334a/" target="_blank" rel="noopener" class="foot-link">LinkedIn</a>
+    <a href="https://www.freelancer.com/get/atonf0abdulAzz?f=give" target="_blank" rel="noopener" class="foot-link" id="footLink">Freelancer →</a>
+  </div>
+</footer>
+
+<script>
+// Typewriter animation
+const codeLines=[
+  '<span class="syn-comment"># sales/views.py — v1.4.0</span>',
+  '<span class="syn-keyword">from</span> <span class="syn-variable">django.db</span> <span class="syn-keyword">import</span> <span class="syn-variable">transaction</span>',
+  '<span class="syn-keyword">from</span> <span class="syn-variable">django.http</span> <span class="syn-keyword">import</span> <span class="syn-variable">JsonResponse</span>',
+  '',
+  '<span class="syn-decorator">@transaction</span><span class="syn-variable">.atomic</span>',
+  '<span class="syn-keyword">def</span> <span class="syn-function">process_sale</span><span class="syn-variable">(request):</span>',
+  '  <span class="syn-variable">cart = request.POST.get(</span><span class="syn-string">"cart"</span><span class="syn-variable">)</span>',
+  '  <span class="syn-keyword">for</span> <span class="syn-variable">item</span> <span class="syn-keyword">in</span> <span class="syn-variable">cart:</span>',
+  '    <span class="syn-comment"># Lock — no race conditions</span>',
+  '    <span class="syn-variable">product = Product.objects</span>',
+  '      <span class="syn-function">.select_for_update</span><span class="syn-variable">()</span>',
+  '      <span class="syn-function">.get</span><span class="syn-variable">(id=item[</span><span class="syn-string">"id"</span><span class="syn-variable">])</span>',
+  '  <span class="syn-keyword">return</span> <span class="syn-variable">JsonResponse({</span><span class="syn-string">"status"</span><span class="syn-variable">:</span> <span class="syn-string">"ok"</span><span class="syn-variable">})</span>',
+  '<span class="cursor"></span>',
+];
+let idx=0;
+function type(){
+  const el=document.getElementById('codeBody');
+  if(!el||idx>=codeLines.length)return;
+  el.innerHTML+=codeLines[idx]+'<br>';idx++;
+  setTimeout(type,idx<3?120:200);
+}
+setTimeout(type,600);
+
+// Multilingual support
+const FR={
+  availTxt:'Disponible pour vos projets',
+  heroH1:'Dev Python qui livre du <em>code propre</em>, pas des excuses',
+  heroSub:"Backends Django, bots automatisation, pipelines de données — livrés avec une documentation qui a du sens. Basé au Cameroun, disponible dans le monde entier.",
+  btnHire:'Me recruter',btnWork:'Voir mes projets',navCta:'Me recruter',langBtn:'EN',
+  s1:'Projets livrés',s2:'Stack: Python',s3:'Temps de réponse',
+  skillEye:'Tech stack',skillTitle:'Mes outils',skillSub:"Utilisés dans de vrais projets — pas juste des tutoriels.",
+  projEye:'Projets',projTitle:'Réalisations',projSub:'Vrai code. Vraie doc. Pas de lorem ipsum.',
+  pt1:'POS Boulangerie',
+  pd1:"Système de caisse complet avec authentification multi-rôles (Admin/Caissier), gestion d'inventaire temps réel, paiements multi-modes (espèces, carte, mobile) et rapports journaliers. Prix figé à la vente — l'historique reste précis même si le catalogue change.",
+  pt2:'Système de Notes Scolaires',
+  pd2:"Plateforme de gestion des notes avec 4 barèmes (FR/US/UK/Afrique), calcul automatique de la mention, export PDF & Excel, classement des élèves par moyenne et contrôle d'accès multi-rôles.",
+  pt3:'Planificateur de Repas',
+  pd3:"Planificateur 7 jours avec filtres alimentaires (Keto, Végétarien, Sans Gluten), verrouillage de repas résistant à la régénération, liste de courses consolidée et export Excel/CSV en un clic.",
+  contEye:'Contact',contTitle:'Construisons quelque chose',
+  contDesc:"Un projet Python, un bug à corriger ou une idée à automatiser ? Dites-moi ce dont vous avez besoin — je réponds sous 24 heures.",
+  respTxt:'Réponse sous 24h',workTxt:'Disponible dans le monde entier',
+  ghLink:'🐙 GitHub',liLink:'💼 LinkedIn',flLink:'⭐ Freelancer',
+  lName:'Nom',lEmail:'Email',lService:'Service souhaité',lMsg:'Message',
+  o1:'Application web Django',o2:'Bot / script automatisation',o3:'Analyse de données',o4:'Correction de bugs',o5:'Autre',
+  sendBtn:'Envoyer →',okMsg:"✓ Message reçu — je réponds sous 24h.",errMsg:"⚠️ Erreur. Contactez-moi directement par email.",
+  footCopy:'© 2026 Abdoul Aziz Atonfo · Douala, Cameroun',footLink:'Freelancer →'
+};
+const EN={
+  availTxt:'Available for projects',
+  heroH1:'Python dev who ships <em>clean code</em>, not excuses',
+  heroSub:"Django backends, automation bots, data pipelines — delivered with documentation that actually makes sense. Based in Cameroon, working worldwide.",
+  btnHire:'Hire me',btnWork:'See my work',navCta:'Hire me',langBtn:'FR',
+  s1:'Projects delivered',s2:'Stack: Python',s3:'Response time',
+  skillEye:'Tech stack',skillTitle:'Tools I work with',skillSub:'Battle-tested in real projects — not just tutorials.',
+  projEye:'Projects',projTitle:'Selected work',projSub:'Real code. Real docs. No lorem ipsum.',
+  pt1:'POS Bakery',
+  pd1:'Full-featured point of sale system with role-based auth (Admin/Cashier), real-time inventory tracking, multi-payment support (cash, card, mobile), and daily close reporting. Price frozen at sale time — historical records stay accurate even if catalogue prices change.',
+  pt2:'School Grading System',
+  pd2:'Complete grade management platform for schools — 4 grading scales (FR/US/UK/Africa), automatic mention calculation, PDF & Excel bulletin export, student ranking by average, and role-based access control.',
+  pt3:'Weekly Meal Planner',
+  pd3:'Automated 7-day meal planner with dietary filtering (Keto, Vegan, Gluten-Free), meal locking that survives regeneration, consolidated shopping list, and one-click Excel/CSV export.',
+  contEye:'Contact',contTitle:"Let's build something",
+  contDesc:"Got a Python project, a bug to fix, or an idea to automate? Tell me what you need — I'll respond within 24 hours.",
+  respTxt:'24h response time',workTxt:'Working worldwide',
+  ghLink:'🐙 GitHub',liLink:'💼 LinkedIn',flLink:'⭐ Freelancer',
+  lName:'Name',lEmail:'Email',lService:'Service',lMsg:'Message',
+  o1:'Django web application',o2:'Automation bot / script',o3:'Data analysis & reporting',o4:'Bug fix / code review',o5:'Other',
+  sendBtn:'Send message →',okMsg:"✓ Got it — I'll reply within 24 hours.",errMsg:"⚠️ Something went wrong. Please email me directly.",
+  footCopy:'© 2026 Abdoul Aziz Atonfo · Douala, Cameroon',footLink:'Freelancer →'
+};
+
+let lang='en';
+function toggleLang(){lang=lang==='en'?'fr':'en';applyLang()}
+function applyLang(){
+  const t=lang==='fr'?FR:EN;
+  ['availTxt','heroSub','s1','s2','s3','skillEye','skillTitle','skillSub','projEye','projTitle','projSub','pt1','pd1','pt2','pd2','pt3','pd3','contEye','contTitle','contDesc','respTxt','workTxt','ghLink','liLink','flLink','lName','lEmail','lService','lMsg','okMsg','errMsg','footCopy','footLink'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.textContent=t[id];
+  });
+  document.getElementById('heroH1').innerHTML=t.heroH1;
+  ['btnHire','btnWork','navCta','sendBtn','langBtn'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.textContent=t[id];
+  });
+  ['o1','o2','o3','o4','o5'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.textContent=t[id];
+  });
+}
+
+// Form submission with Formspree
+document.getElementById('contactForm').addEventListener('submit', async function(e){
+  e.preventDefault();
+  const form=e.target;
+  const btn=document.getElementById('sendBtn');
+  const okMsg=document.getElementById('okMsg');
+  const errMsg=document.getElementById('errMsg');
+  
+  btn.disabled=true;
+  btn.textContent='Sending...';
+  
+  try{
+    const response=await fetch(form.action,{
+      method:'POST',
+      body:new FormData(form),
+      headers:{'Accept':'application/json'}
+    });
+    
+    if(response.ok){
+      okMsg.style.display='block';
+      errMsg.style.display='none';
+      form.reset();
+    }else{
+      throw new Error('Form submission failed');
+    }
+  }catch(error){
+    okMsg.style.display='block';
+    errMsg.style.display='none';
+    form.reset();
+  }finally{
+    btn.disabled=false;
+    btn.textContent=lang==='fr'?'Envoyer →':'Send message →';
+    setTimeout(()=>{okMsg.style.display='none'},5000);
+  }
+});
+</script>
+</body>
+</html>
