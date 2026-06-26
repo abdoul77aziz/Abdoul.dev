@@ -23,9 +23,9 @@
   "jobTitle": "Python Developer",
   "url": "https://abdoul.dev",
   "sameAs": [
-    "https://www.freelancer.com/u/atonf0abdulAzz",
-    "https://github.com/VOTRE_GITHUB",
-    "https://www.linkedin.com/in/VOTRE_LINKEDIN"
+    "https://github.com/abdoul77aziz",
+    "https://www.linkedin.com/in/atonfo-abdoul-aziz-86478334a/",
+    "https://www.freelancer.com/u/atonf0abdulAzz"
   ],
   "address": {
     "@type": "PostalAddress",
@@ -41,7 +41,6 @@
    THEME VARIABLES — Light/Dark Hybrid
    ============================================ */
 :root {
-  /* Palette vive */
   --emerald: #059669;
   --emerald-deep: #047857;
   --emerald-glow: #10b981;
@@ -50,7 +49,6 @@
   --blue: #2563eb;
   --blue-electric: #3b82f6;
 
-  /* Light theme (défaut) */
   --bg: #fafaf9;
   --bg-elevated: rgba(255, 255, 255, 0.7);
   --bg-terminal: #0a0a0a;
@@ -65,7 +63,6 @@
   --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.08);
   --shadow-glow: 0 8px 24px rgba(5, 150, 105, 0.15);
   --gradient-accent: linear-gradient(135deg, var(--emerald) 0%, var(--blue) 100%);
-  --gradient-orange: linear-gradient(135deg, var(--orange) 0%, var(--orange-hot) 100%);
   --gradient-terminal: linear-gradient(180deg, #0a0a0a 0%, #141414 100%);
 }
 
@@ -87,9 +84,6 @@
   }
 }
 
-/* ============================================
-   BASE & RESET
-   ============================================ */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 
@@ -102,7 +96,6 @@ body {
   overflow-x: hidden;
 }
 
-/* Background subtil avec gradient */
 body::before {
   content: '';
   position: fixed;
@@ -126,9 +119,6 @@ body::before {
   z-index: 1;
 }
 
-/* ============================================
-   SKIP LINK (a11y)
-   ============================================ */
 .skip-link {
   position: absolute;
   top: -40px;
@@ -145,9 +135,6 @@ body::before {
 }
 .skip-link:focus { top: 0; }
 
-/* ============================================
-   NAVIGATION — Glassmorphism
-   ============================================ */
 nav {
   position: sticky;
   top: 0;
@@ -229,9 +216,6 @@ nav {
   box-shadow: var(--shadow-glow);
 }
 
-/* ============================================
-   HERO
-   ============================================ */
 .hero {
   padding: 6rem 0 5rem;
   display: grid;
@@ -344,9 +328,6 @@ nav {
   box-shadow: 0 8px 24px rgba(249, 115, 22, 0.15);
 }
 
-/* ============================================
-   TERMINAL — Premium
-   ============================================ */
 .terminal {
   background: var(--gradient-terminal);
   border-radius: 16px;
@@ -404,7 +385,6 @@ nav {
   color: #e5e7eb;
 }
 
-/* Syntax highlighting */
 .syn-comment { color: #6b7280; font-style: italic; }
 .syn-keyword { color: #c084fc; font-weight: 500; }
 .syn-function { color: #34d399; }
@@ -427,9 +407,6 @@ nav {
   50% { opacity: 0; }
 }
 
-/* ============================================
-   STATS
-   ============================================ */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -490,9 +467,6 @@ nav {
   letter-spacing: 0.1em;
 }
 
-/* ============================================
-   SECTIONS
-   ============================================ */
 .section {
   padding: 5rem 0;
   border-top: 1px solid var(--border);
@@ -534,9 +508,6 @@ nav {
   max-width: 600px;
 }
 
-/* ============================================
-   SKILLS — Badges premium
-   ============================================ */
 .badges-wrap {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -596,9 +567,6 @@ nav {
   color: var(--text-muted);
 }
 
-/* ============================================
-   PROJECTS
-   ============================================ */
 .proj-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -614,6 +582,8 @@ nav {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 .proj-card::before {
@@ -659,6 +629,7 @@ nav {
   color: var(--text-muted);
   line-height: 1.7;
   margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
 .stack {
@@ -684,8 +655,44 @@ nav {
 }
 
 /* ============================================
-   CONTACT
+   PROJECT LINK — View Code Button
    ============================================ */
+.proj-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1.5rem;
+  padding: 10px 18px;
+  background: rgba(5, 150, 105, 0.08);
+  border: 1.5px solid rgba(5, 150, 105, 0.25);
+  border-radius: 10px;
+  color: var(--emerald);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  align-self: flex-start;
+  letter-spacing: 0.01em;
+}
+
+.proj-link svg {
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.proj-link:hover {
+  background: var(--emerald);
+  color: #fff;
+  border-color: var(--emerald);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(5, 150, 105, 0.3);
+}
+
+.proj-link:hover svg {
+  transform: translate(2px, -2px);
+}
+
 .contact-wrap {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
@@ -863,9 +870,6 @@ nav {
   border: 1px solid rgba(249, 115, 22, 0.2);
 }
 
-/* ============================================
-   FOOTER
-   ============================================ */
 footer {
   padding: 2.5rem 0;
   border-top: 1px solid var(--border);
@@ -896,9 +900,6 @@ footer {
 }
 .foot-link:hover { color: var(--emerald); }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
 @media (max-width: 768px) {
   .hero {
     grid-template-columns: 1fr;
@@ -979,7 +980,7 @@ footer {
       <div class="badge"><div class="badge-icon">🐍</div><div><div class="badge-name">Python</div><div class="badge-desc">Primary language</div></div></div>
       <div class="badge"><div class="badge-icon">🎸</div><div><div class="badge-name">Django</div><div class="badge-desc">Web & REST API</div></div></div>
       <div class="badge"><div class="badge-icon">🗄️</div><div><div class="badge-name">PostgreSQL / SQLite</div><div class="badge-desc">Databases</div></div></div>
-      <div class="badge"><div class="badge-icon"></div><div><div class="badge-name">Playwright</div><div class="badge-desc">Automation & testing</div></div></div>
+      <div class="badge"><div class="badge-icon">🤖</div><div><div class="badge-name">Playwright</div><div class="badge-desc">Automation & testing</div></div></div>
       <div class="badge"><div class="badge-icon">📊</div><div><div class="badge-name">Pandas & Streamlit</div><div class="badge-desc">Data & dashboards</div></div></div>
       <div class="badge"><div class="badge-icon">📄</div><div><div class="badge-name">ReportLab & openpyxl</div><div class="badge-desc">PDF & Excel export</div></div></div>
       <div class="badge"><div class="badge-icon">🔗</div><div><div class="badge-name">REST API</div><div class="badge-desc">Integration & design</div></div></div>
@@ -992,24 +993,63 @@ footer {
     <div class="sec-title" id="projTitle">Selected work</div>
     <p class="sec-sub" id="projSub">Real code. Real docs. No lorem ipsum.</p>
     <div class="proj-grid">
+      
+      <!-- PROJET 1: POS Bakery -->
       <div class="proj-card">
         <div class="proj-num">01 / Django · Bootstrap</div>
         <div class="proj-title" id="pt1">POS Bakery</div>
         <div class="proj-desc" id="pd1">Full-featured point of sale system with role-based auth (Admin/Cashier), real-time inventory tracking, multi-payment support (cash, card, mobile), and daily close reporting. Price frozen at sale time — historical records stay accurate even if catalogue prices change.</div>
-        <div class="stack"><span class="pill">Django 5</span><span class="pill">SQLite</span><span class="pill">Bootstrap 5</span><span class="pill">select_for_update</span></div>
+        <div class="stack">
+          <span class="pill">Django 5</span>
+          <span class="pill">SQLite</span>
+          <span class="pill">Bootstrap 5</span>
+          <span class="pill">select_for_update</span>
+        </div>
+        <a href="https://github.com/abdoul77aziz/POS-Bakery-Github" target="_blank" rel="noopener" class="proj-link" id="pl1">
+          <span>View Code</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
       </div>
+
+      <!-- PROJET 2: School Grading System -->
       <div class="proj-card">
         <div class="proj-num">02 / Django · ReportLab</div>
         <div class="proj-title" id="pt2">School Grading System</div>
         <div class="proj-desc" id="pd2">Complete grade management platform for schools — 4 grading scales (FR/US/UK/Africa), automatic mention calculation, PDF & Excel bulletin export, student ranking by average, and role-based access control.</div>
-        <div class="stack"><span class="pill">Django 5</span><span class="pill">ReportLab</span><span class="pill">openpyxl</span><span class="pill">Bootstrap 5</span></div>
+        <div class="stack">
+          <span class="pill">Django 5</span>
+          <span class="pill">ReportLab</span>
+          <span class="pill">openpyxl</span>
+          <span class="pill">Bootstrap 5</span>
+        </div>
+        <a href="https://github.com/abdoul77aziz/School-Grading-System" target="_blank" rel="noopener" class="proj-link" id="pl2">
+          <span>View Code</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
       </div>
+
+      <!-- PROJET 3: Meal Planner -->
       <div class="proj-card">
         <div class="proj-num">03 / Streamlit · Pandas</div>
         <div class="proj-title" id="pt3">Weekly Meal Planner</div>
         <div class="proj-desc" id="pd3">Automated 7-day meal planner with dietary filtering (Keto, Vegan, Gluten-Free), meal locking that survives regeneration, consolidated shopping list, and one-click Excel/CSV export.</div>
-        <div class="stack"><span class="pill">Streamlit</span><span class="pill">Pandas</span><span class="pill">openpyxl</span></div>
+        <div class="stack">
+          <span class="pill">Streamlit</span>
+          <span class="pill">Pandas</span>
+          <span class="pill">openpyxl</span>
+        </div>
+        <a href="https://github.com/abdoul77aziz/meal-planner" target="_blank" rel="noopener" class="proj-link" id="pl3">
+          <span>View Code</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M7 17L17 7M17 7H7M17 7V17"/>
+          </svg>
+        </a>
       </div>
+
     </div>
   </section>
 
@@ -1024,14 +1064,14 @@ footer {
         <div class="contact-detail"><div class="contact-icon">🌍</div><span id="workTxt">Working worldwide</span></div>
         
         <div class="social-links">
-          <a href="https://github.com/VOTRE_GITHUB" target="_blank" rel="noopener" class="social-link" id="ghLink">🐙 GitHub</a>
-          <a href="https://linkedin.com/in/VOTRE_LINKEDIN" target="_blank" rel="noopener" class="social-link" id="liLink">💼 LinkedIn</a>
+          <a href="https://github.com/abdoul77aziz" target="_blank" rel="noopener" class="social-link" id="ghLink">🐙 GitHub</a>
+          <a href="https://www.linkedin.com/in/atonfo-abdoul-aziz-86478334a/" target="_blank" rel="noopener" class="social-link" id="liLink">💼 LinkedIn</a>
           <a href="https://www.freelancer.com/u/atonf0abdulAzz" target="_blank" rel="noopener" class="social-link" id="flLink">⭐ Freelancer</a>
         </div>
       </div>
       
       <div class="form-card">
-        <form id="contactForm" action="https://formspree.io/f/REMPLACEZ_PAR_VOTRE_ID_FORMSPREE" method="POST">
+        <form id="contactForm" action="https://formspree.io/f/xdarggrz" method="POST">
           <div class="form-row2">
             <div class="fg">
               <label for="iName" id="lName">Name</label>
@@ -1069,9 +1109,9 @@ footer {
 <footer>
   <span class="foot-copy" id="footCopy">© 2026 Abdoul Aziz Atonfo · Douala, Cameroon</span>
   <div class="foot-links">
-    <a href="https://github.com/abdoul77aziz/POS-Bakery-Github.git" target="_blank" rel="noopener" class="foot-link">GitHub</a>
+    <a href="https://github.com/abdoul77aziz" target="_blank" rel="noopener" class="foot-link">GitHub</a>
     <a href="https://www.linkedin.com/in/atonfo-abdoul-aziz-86478334a/" target="_blank" rel="noopener" class="foot-link">LinkedIn</a>
-    <a href="https://www.freelancer.com/get/atonf0abdulAzz?f=give" target="_blank" rel="noopener" class="foot-link" id="footLink">Freelancer →</a>
+    <a href="https://www.freelancer.com/u/atonf0abdulAzz" target="_blank" rel="noopener" class="foot-link" id="footLink">Freelancer →</a>
   </div>
 </footer>
 
@@ -1117,6 +1157,7 @@ const FR={
   pd2:"Plateforme de gestion des notes avec 4 barèmes (FR/US/UK/Afrique), calcul automatique de la mention, export PDF & Excel, classement des élèves par moyenne et contrôle d'accès multi-rôles.",
   pt3:'Planificateur de Repas',
   pd3:"Planificateur 7 jours avec filtres alimentaires (Keto, Végétarien, Sans Gluten), verrouillage de repas résistant à la régénération, liste de courses consolidée et export Excel/CSV en un clic.",
+  pl1:'Voir le code',pl2:'Voir le code',pl3:'Voir le code',
   contEye:'Contact',contTitle:'Construisons quelque chose',
   contDesc:"Un projet Python, un bug à corriger ou une idée à automatiser ? Dites-moi ce dont vous avez besoin — je réponds sous 24 heures.",
   respTxt:'Réponse sous 24h',workTxt:'Disponible dans le monde entier',
@@ -1140,6 +1181,7 @@ const EN={
   pd2:'Complete grade management platform for schools — 4 grading scales (FR/US/UK/Africa), automatic mention calculation, PDF & Excel bulletin export, student ranking by average, and role-based access control.',
   pt3:'Weekly Meal Planner',
   pd3:'Automated 7-day meal planner with dietary filtering (Keto, Vegan, Gluten-Free), meal locking that survives regeneration, consolidated shopping list, and one-click Excel/CSV export.',
+  pl1:'View Code',pl2:'View Code',pl3:'View Code',
   contEye:'Contact',contTitle:"Let's build something",
   contDesc:"Got a Python project, a bug to fix, or an idea to automate? Tell me what you need — I'll respond within 24 hours.",
   respTxt:'24h response time',workTxt:'Working worldwide',
@@ -1154,7 +1196,7 @@ let lang='en';
 function toggleLang(){lang=lang==='en'?'fr':'en';applyLang()}
 function applyLang(){
   const t=lang==='fr'?FR:EN;
-  ['availTxt','heroSub','s1','s2','s3','skillEye','skillTitle','skillSub','projEye','projTitle','projSub','pt1','pd1','pt2','pd2','pt3','pd3','contEye','contTitle','contDesc','respTxt','workTxt','ghLink','liLink','flLink','lName','lEmail','lService','lMsg','okMsg','errMsg','footCopy','footLink'].forEach(id=>{
+  ['availTxt','heroSub','s1','s2','s3','skillEye','skillTitle','skillSub','projEye','projTitle','projSub','pt1','pd1','pt2','pd2','pt3','pd3','pl1','pl2','pl3','contEye','contTitle','contDesc','respTxt','workTxt','ghLink','liLink','flLink','lName','lEmail','lService','lMsg','okMsg','errMsg','footCopy','footLink'].forEach(id=>{
     const el=document.getElementById(id);if(el)el.textContent=t[id];
   });
   document.getElementById('heroH1').innerHTML=t.heroH1;
