@@ -58,9 +58,11 @@ cd Abdoul.dev
 open index.html  # macOS
 start index.html # Windows
 xdg-open index.html # Linux
+```
 
 Or use any local server:
 
+```bash
 # Python 3
 python -m http.server 8000
 
@@ -68,13 +70,25 @@ python -m http.server 8000
 npx serve
 
 # Then visit http://localhost:8000
+```
 
 ⚙️ Configuration
-Contact Form (Formspree)
-Sign up at formspree.io
-Create a new form
-Replace REMPLACEZ_PAR_VOTRE_ID_FORMSPREE in index.html with your form ID:
 
+Contact Form (Formspree)
+
+1. Sign up at formspree.io
+2. Create a new form
+3. Replace REMPLACEZ_PAR_VOTRE_ID_FORMSPREE in index.html with your form ID:
+
+```html
+<form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+```
+
+Social Links
+
+Update these placeholders in index.html:
+
+```html
 <!-- GitHub profile -->
 <a href="https://github.com/abdoul77aziz">
 
@@ -83,30 +97,45 @@ Replace REMPLACEZ_PAR_VOTRE_ID_FORMSPREE in index.html with your form ID:
 
 <!-- Freelancer -->
 <a href="https://www.freelancer.com/u/atonf0abdulAzz">
+```
 
 📂 Project Structure
 
+```
 Abdoul.dev/
 ├── index.html          # Main portfolio file (single-page app)
 ├── README.md           # This file
 └── LICENSE             # MIT License
+```
 
 🎨 Design Highlights
-Color palette: Emerald (#059669), Orange (#f97316), Blue (#2563eb)
-Typography: Space Grotesk (body), Instrument Serif (headings), JetBrains Mono (code)
-Effects: Glassmorphism, smooth transitions, gradient accents
-Animations: Typewriter code preview, pulse effects, hover transforms
+
+* Color palette: Emerald (#059669), Orange (#f97316), Blue (#2563eb)
+* Typography: Space Grotesk (body), Instrument Serif (headings), JetBrains Mono (code)
+* Effects: Glassmorphism, smooth transitions, gradient accents
+* Animations: Typewriter code preview, pulse effects, hover transforms
+
 🌐 Deployment
+
 The site is automatically deployed via GitHub Pages from the main branch.
+
 Every push to main triggers a new deployment at:
 👉 https://abdoul77aziz.github.io/Abdoul.dev/
+
 📫 Contact
-📧 Email: via contact form
-💼 LinkedIn: atonfo-abdoul-aziz
-🐙 GitHub: @abdoul77aziz
-⭐ Freelancer: @atonf0abdulAzz
+
+* 📧 Email: via contact form
+* 💼 LinkedIn: atonfo-abdoul-aziz
+* 🐙 GitHub: @abdoul77aziz
+* ⭐ Freelancer: @atonf0abdulAzz
+
 📄 License
+
 This project is open source and available under the MIT License.
+
+---
+
+```
 <div align="center">
 
 Built with ❤️ by Abdoul Aziz Atonfo
